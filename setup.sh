@@ -19,7 +19,7 @@
 set -x
 
 # 1) Setup stage environment
-curl -L -o icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
+curl -L -o ~/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
 chmod 600 ~/.ssh/icicleop
 
 # 2) Create a config file
