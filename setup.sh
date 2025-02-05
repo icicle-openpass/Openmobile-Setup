@@ -19,18 +19,19 @@
 set -x
 
 # 1) Setup stage environment
-curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
-chmod 600 /home/icicle/.ssh/icicleop
+sudo chmod 700 /home/icicle/.ssh
+sudo curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
+sudo chmod 600 /home/icicle/.ssh/icicleop
 
 # 2) Create a config file
-echo "IdentityFile ~/.ssh/icicleop" > /home/icicle/.ssh/config
+sudo echo "IdentityFile /home/icicle/.ssh/icicleop" > /home/icicle/.ssh/config
 
 # 3) Make directory "/Desktop"
-mkdir Desktop
+sudo mkdir Desktop
 
 # 4) Curl command to download a file. (Edited Version)
-curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
-chmod +x install.sh
+sudo curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
+sudo chmod +x install.sh
 
 # 5) Run the install.sh file (Edited Version)
 yes | bash /home/icicle/install.sh
