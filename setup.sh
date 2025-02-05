@@ -48,45 +48,8 @@ sudo apt install -y nginx
 
 # 9) Edit default file
 NGINX_CONF="/etc/nginx/sites-available/default"
-
 sudo rm -rf $NGINX_CONF
-
-sudo tee $NGINX_CONF > /dev/null <<EOF
-server {
-    listen 80;
-    listen 30080;
-
-    server_name _;  # Accept requests from any IP
-
-    location /cgi-bin/callms.py {
-        set $state_value $arg_state;
-        set $user_value $arg_user;
-        set $ms $arg_ms;
-        set $port $arg_port;
-        set $path $arg_path;
-        set $file $arg_page;
-
-        if ($ms = "") {
-            return 400 "Missing microservice name";
-        }
-        if ($port = "") {
-            return 400 "Missing port number";
-        }
-        if ($path = "") {
-            return 400 "Missing microservice path";
-        }
-        if ($file = "") {
-            return 400 "Missing file name";
-        }
-
-        proxy_pass http://10.43.195.204:30080$request_uri;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-EOF
+sudo curl -L -o $NGINX_CONF https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/nginx
 
 # 10) Test the NGINX File
 sudo nginx -t
