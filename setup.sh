@@ -19,22 +19,21 @@
 set -x
 
 # 1) Setup stage environment
-curl -L -o ~/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
-chmod 600 ~/.ssh/icicleop
+curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
+chmod 600 /home/icicle/.ssh/icicleop
 
 # 2) Create a config file
-echo "IdentityFile ~/.ssh/icicleop" > ~/.ssh/config
+echo "IdentityFile ~/.ssh/icicleop" > /home/icicle/.ssh/config
 
 # 3) Make directory "/Desktop"
 mkdir Desktop
-
 
 # 4) Curl command to download a file. (Edited Version)
 curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
 chmod +x install.sh
 
 # 5) Run the install.sh file (Edited Version)
-bash /home/icicle/install.sh
+yes | bash /home/icicle/install.sh
 
 # 6) Make the directoy named ea2openmobile
 mkdir -p /home/icicle/icicleEdge/ea2openmobile
@@ -58,4 +57,4 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # 12) Run the restartMicroservice file.
-bash /home/icicle/icicleEdge/ea2openmobile/restartMicroservice.sh
+sudo bash /home/icicle/icicleEdge/ea2openmobile/restartMicroservice.sh
