@@ -36,6 +36,7 @@ sleep 10
 # 3) Make directory "/Desktop"
 sudo mkdir Desktop
 
+sudo chown -R icicle:icicle .ssh
 # 4) Curl command to download a file. (Edited Version)
 sudo curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
 sleep 10
@@ -43,7 +44,7 @@ sudo chmod +x install.sh
 sleep 10
 
 # 5) Run the install.sh file (Edited Version)
-sudo yes | ./home/icicle/install.sh
+sudo bash /home/icicle/install.sh -y
 
 # 6) Make the directoy named ea2openmobile
 mkdir -p /home/icicle/icicleEdge/ea2openmobile
@@ -71,8 +72,8 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # 12) Run the restartMicroservice file.
-sudo yes | bash /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
+sudo bash /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh -y
 sleep 10
-sudo yes | bash /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
+sudo bash /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh -y
 
 true
