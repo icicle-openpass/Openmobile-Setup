@@ -18,6 +18,8 @@
 #!/bin/bash
 set -x
 
+sudo chown -R icicle:icicle .ssh
+
 # 1) Setup stage environment
 sleep 10
 sudo chmod 700 /home/icicle/.ssh
