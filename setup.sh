@@ -43,7 +43,7 @@ sudo chmod +x install.sh
 sleep 10
 
 # 5) Run the install.sh file (Edited Version)
-yes | bash /home/icicle/install.sh
+sudo yes | ./home/icicle/install.sh
 
 # 6) Make the directoy named ea2openmobile
 mkdir -p /home/icicle/icicleEdge/ea2openmobile
