@@ -44,9 +44,9 @@ echo $EDGE_ID > ~/.ssh/icicletype
 
 
 cd /home/icicle/icicleEdge
-/home/icicle/icicleEdge/bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 30080website
+./bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 30080website
 echo Deployed Website!
-/home/icicle/icicleEdge/bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 4242phonehub
+./bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 4242phonehub
 echo Deployed Phone Hub!  
-/home/icicle/icicleEdge/bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 1212aimissions 
+./bin/deployMicroservice.py -home `pwd` -devel -edge edgedevel 1212aimissions 
 echo Deployed AI Mission in the background!
