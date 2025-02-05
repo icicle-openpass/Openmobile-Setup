@@ -19,19 +19,26 @@
 set -x
 
 # 1) Setup stage environment
+sleep 10
 sudo chmod 700 /home/icicle/.ssh
+sleep 10
 sudo curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
+sleep 10
 sudo chmod 600 /home/icicle/.ssh/icicleop
+sleep 10
 
 # 2) Create a config file
 sudo echo "IdentityFile /home/icicle/.ssh/icicleop" > /home/icicle/.ssh/config
+sleep 10
 
 # 3) Make directory "/Desktop"
 sudo mkdir Desktop
 
 # 4) Curl command to download a file. (Edited Version)
 sudo curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
+sleep 10
 sudo chmod +x install.sh
+sleep 10
 
 # 5) Run the install.sh file (Edited Version)
 yes | bash /home/icicle/install.sh
@@ -40,8 +47,12 @@ yes | bash /home/icicle/install.sh
 mkdir -p /home/icicle/icicleEdge/ea2openmobile
 
 # 7) Download restartMicroservice.sh
-curl -L -o /home/icicle/icicleEdge/ea2openmobile/restartMicroservice.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/restartMicroservice.sh
-chmod +x /home/icicle/icicleEdge/ea2openmobile/restartMicroservice.sh
+sudo curl -L -o /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/k3s_setup.sh
+sleep 10
+sudo curl -L -o /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/deployMicroService.sh
+sleep 10
+sudo chmod +x /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
+sudo chmod +x /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
 
 # 8) Install NGINX
 sudo apt install -y nginx
@@ -58,4 +69,8 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # 12) Run the restartMicroservice file.
-sudo bash /home/icicle/icicleEdge/ea2openmobile/restartMicroservice.sh
+sudo yes | bash /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
+sleep 10
+sudo yes | bash /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
+
+true
