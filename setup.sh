@@ -18,25 +18,25 @@
 #!/bin/bash
 set -x
 
-sudo chown -R icicle:icicle .ssh
 
 # 1) Setup stage environment
+sudo chown -R icicle:icicle .ssh
 sleep 10
-sudo chmod 700 /home/icicle/.ssh
+chmod 700 /home/icicle/.ssh
 sleep 10
-sudo curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
+curl -L -o /home/icicle/.ssh/icicleop https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/icicleop
 sleep 10
-sudo chmod 600 /home/icicle/.ssh/icicleop
+chmod 600 /home/icicle/.ssh/icicleop
 sleep 10
 
 # 2) Create a config file
-sudo echo "IdentityFile /home/icicle/.ssh/icicleop" > /home/icicle/.ssh/config
+echo "IdentityFile /home/icicle/.ssh/icicleop" > /home/icicle/.ssh/config
 sleep 10
 
 # 3) Make directory "/Desktop"
-sudo mkdir Desktop
+mkdir Desktop
+sudo chown -R icicle:icicle Desktop
 
-sudo chown -R icicle:icicle .ssh
 # 4) Curl command to download a file. (Edited Version)
 sudo curl -L -o install.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/install.sh
 sleep 10
@@ -44,18 +44,22 @@ sudo chmod +x install.sh
 sleep 10
 
 # 5) Run the install.sh file (Edited Version)
-sudo bash /home/icicle/install.sh -y
+sudo chown -R icicle:icicle install.sh
+bash /home/icicle/install.sh -y
 
 # 6) Make the directoy named ea2openmobile
 mkdir -p /home/icicle/icicleEdge/ea2openmobile
+sudo chown -R icicle:icicle /home/icicle/icicleEdge/ea2openmobile
 
 # 7) Download restartMicroservice.sh
-sudo curl -L -o /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/k3s_setup.sh
+curl -L -o /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/k3s_setup.sh
 sleep 10
-sudo curl -L -o /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/deployMicroService.sh
+curl -L -o /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh https://raw.githubusercontent.com/icicle-openpass/Openmobile-Setup/refs/heads/main/deployMicroService.sh
 sleep 10
-sudo chmod +x /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
-sudo chmod +x /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
+chmod +x /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
+chmod +x /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
+sudo chown -R icicle:icicle /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh
+sudo chown -R icicle:icicle /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh
 
 # 8) Install NGINX
 sudo apt install -y nginx
@@ -72,8 +76,8 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # 12) Run the restartMicroservice file.
-sudo bash /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh -y
+bash /home/icicle/icicleEdge/ea2openmobile/k3s_setup.sh -y
 sleep 10
-sudo bash /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh -y
+bash /home/icicle/icicleEdge/ea2openmobile/deployMicroService.sh -y
 
 true
